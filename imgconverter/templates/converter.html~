@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <title>Converter</title>
+
+<style type="text/css">
+	[type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
+[type="file"] + label {
+  background: #f15d22;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+	font-family: 'Rubik', sans-serif;
+	font-size: inherit;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 1rem 50px;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle;
+  
+  &:hover {
+    background-color: darken(#f15d22, 10%);
+  }
+  
+  &.btn-1 {
+    background-color: #f79159;
+    box-shadow: 0 6px darken(#f79159, 10%);
+    transition: none;
+
+    &:hover {
+      box-shadow: 0 4px darken(#f79159, 10%);
+      top: 2px;
+    }
+  }
+  
+  &.btn-2 {
+    background-color: #99c793;
+    border-radius: 50px;
+    overflow: hidden;
+    
+    &::before {
+      color: #fff;
+      content: "\f382";
+      font-family: "Font Awesome 5 Pro";
+      font-size: 100%;
+      height: 70%;
+      right: 130%;
+      line-height: 3.3;
+      position: absolute;
+      top: 0px;
+      transition: all 0.3s;
+    }
+
+    &:hover {
+      background-color: darken(#99c793, 30%);
+        
+      &::before {
+        right: 75%;
+      }
+    }
+  }
+  
+  &.btn-3 {
+    background-color: #ee6d9e;
+    border-radius: 0;
+    overflow: hidden;
+    
+    span {
+      display: inline-block;
+      height: 70%;
+      transition: all 0.3s;
+      width: 70%;
+    }
+    
+    &::before {
+      color: #fff;
+      content: "\f382";
+      font-family: "Font Awesome 5 Pro";
+      font-size: 130%;
+      height: 70%;
+      left: 0;
+      line-height: 2.6;
+      position: absolute;
+      top: -180%;
+      transition: all 0.3s;
+      width: 70%;
+    }
+
+    &:hover {
+      background-color: darken(#ee6d9e, 30%);
+      
+      span {
+        transform: translateY(300%);
+      }
+        
+      &::before {
+        top: 0;
+      }
+    }
+  }
+}
+
+// Demo specific styles below
+body {
+  font-family: 'Literata', serif;
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.wrapper {
+  background-color: #fff;
+  border-radius: 1rem;
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 2rem;
+  width: 70%;
+}
+
+.footer {
+  font-size: .8rem;
+  margin-bottom: 0;
+  margin-top: 3rem;
+}
+
+h1,
+p {
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.7rem;
+}
+
+a {
+  color: #31c1ef;
+  text-decoration: none;
+}
+</style>
+
+
+
+<style type="text/css">
+	
+ /*Reset Select */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 10em;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+select {
+  flex: 1;
+  padding: 0 0.5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #34495e;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+
+</style>
+
+
+
+
+
+<style type="text/css">
+	
+	.input-file-container {
+  position: relative;
+  width: 225px;
+} 
+.js .input-file-trigger {
+  display: block;
+  padding: 14px 45px;
+  background: #39D2B4;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #34495E;
+  color: #39D2B4;
+}
+
+.file-return {
+  margin: 0;
+
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+  margin-left: 280px;
+
+}
+/*.js .file-return:not(:empty):before {
+  content: "Selected file: ";
+  font-style: normal;
+  font-weight: normal;
+  margin-right: 0px;
+}*/
+
+
+
+
+
+
+/* Useless styles, just for demo styles */
+
+body {
+  font-family: "Open sans", "Segoe UI", "Segoe WP", Helvetica, Arial, sans-serif;
+  color: white;
+  background: #FCFDFD;
+}
+h1, h2 {
+  margin-bottom: 5px;
+  font-weight: normal;
+  
+  color:#aaa;
+}
+h2 {
+  margin: 5px 0 2em;
+  color: #1ABC9C;
+}
+form {
+  width: 200px;
+  margin: 0 auto;
+  text-align:center;
+}
+h2 + P {
+  text-align: center; 
+
+}
+.txtcenter {
+  margin-top: 4em;
+  font-size: .9em;
+  text-align: center;
+  color: #aaa;
+
+}
+.copy {
+  margin-top: 2em;
+}
+.copy a {
+  text-decoration: none;
+  color: #1ABC9C;
+}
+	
+</style>
+
+
+
+  <body style="background-color: #6610f2;" >
+
+
+
+
+<div class="collapse" id="navbarToggleExternalContent">
+  <div class="bg-dark p-4">
+    <h5 class="text-white h4">Welcome To Online Converter</h5>
+    <span class="text-muted">The Work Was Done By Jaiganesh</span>
+  </div>
+</div>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<div style=" margin-left: 80px;">
+<br><br><br><h2 style="color: white; font-style: italic;">
+		File Converter
+	</h2>
+		<h6 style="color: white;  font-style: italic;">
+			CloudConvert is an online file converter. image,  <br>
+			 formats. To get started, use the button below and<br>
+			 select files to convert from your computer.
+		</h6>
+	</div>
+</div>
+
+<h3 style="margin-top: -77px; margin-left: 900px;">
+	to
+</h3>
+
+<h2 style="color: white; margin-left: 860px; margin-top: -150px;">
+	convert
+</h2><br><br>
+
+<form id="all" method="POST" action="hahagrgfhth"enctype="multipart/form-data">
+        {% csrf_token %}  
+<div class="select" style="margin-left: 110px;margin-top: -45px; color:  #6610f2;">
+   <select name="slct" id="slct">
+    <option value="default" selected disabled>Select</option>
+    <!-- <option value="1">Word</option> -->
+   <option value="jpg">Jpg</option>
+    <option value="png">Png</option>
+    <option value="gif">Gif</option>
+    <option value="psd">Psd</option>
+    <option value="webp">Webp</option>
+    <option value="jpeg">Jpeg</option>
+    <option value="tiff">Tiff</option>
+    <option value="bmp">Bmp</option>
+    
+  </select>
+</div>
+
+
+<div class="select" style="margin-left: 405px;margin-top: -47px; color:  #6610f2;">
+ <select name="slct2" id="slct2" onchange="myFunction(this)">
+    <option value="default" selected disabled>Select</option>
+    <!-- <option value="10">Pdf</option> -->
+     <option value="jpg">Jpg</option>
+    <option value="png">Png</option>
+    <option value="gif">Gif</option>
+    <option value="ico">Ico</option>
+    <option value="webp">Webp</option>
+    <option value="jpeg">Jpeg</option>
+    <option value="tiff">Tiff</option>
+    <option value="bmp">Bmp</option>
+
+  </select>
+</div>
+
+
+<!-- <input type="file" id="file" / style="margin-left: 850px; margin-top: 100px;"> -->
+  <!-- <label for="file" class="btn-2">upload</label> -->
+<!-- style="visibility: hidden;"-->
+<div id="formid">
+  <div class="input-file-container" style="margin-left: 240px; margin-top: 50px;">  
+    <input class="input-file" id="my-file" disabled type="file" >
+    <label tabindex="0" for="my-file" class="input-file-trigger" onmousemove="check_ext()">Select a file...</label>
+  </div>
+  <p id="msg" class="file-return"></p>
+</div>
+<!-- <button onclick="statusFile();">Click Here for Status</button> -->
+
+
+
+<section id="table" style="visibility: hidden;"> <!-- visibility: hidden; -->
+
+				<div id=filename>
+					<i class="fas fa-file" style="font-size:20px;color:orange; margin-left: -700px; margin-right: 400px; margin-top: 10px;"></i>
+					
+					<div id="file-upload-filename" style="margin-left: -1080px; ">
+            </div>
+		</div>
+		<h5 style="margin-left: -500px; margin-top: -35px; font-style: italic;">
+			Convert &nbsp; To
+		</h5>
+
+		<h5><p id="to" style="margin-top: -30px; margin-left: -320px; font-size:18px; font-style: bolder; font-style: italic;">
+			
+		</p></h5>
+<div >
+<h5 style="margin-top: -75px; margin-left: 90px; margin-right: -140px;">
+	status
+	<!-- <div class="progress" style="margin-top: 0px; margin-left: 50px; margin-right : 40px;">
+  <div class="progress-bar progress-bar-striped"  id="dynamic" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+  	
+</div>
+</div> -->
+
+</div>
+</h5>
+<div>
+</div>	
+ </section>
+
+ <div  id="mybar" style="visibility: hidden;"> 
+<div class="progress" style="margin-top: -10px; margin-left: 130px; margin-right : -100px;">
+  <div id="dynamic"class="progress-bar progress-bar-striped bg-success"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ">
+    <span id="current-progress"></span>
+    
+
+  </div>
+</div>
+
+<section>
+<div id="conv">
+<button class="btn btn-success" id="convert_btn" style="margin-left: 330px; margin-top: -50px;">
+	Convert
+</button>
+</div>
+</div>
+</section>
+</form>
+
+<section>
+<div id="comp" style="margin-left: 570px; margin-top: -35px; display: none;"> 
+	<h5 style=" margin-left: 460px; margin-right: 140px;">
+		Completed
+	</h5>
+<button  class="btn btn-danger" id="Downloard_btn" style="margin-left:590px; margin-top: -65px;">
+	Downloard
+</button>
+</div>
+</section>
+
+  </body>
+ 
+ <script type="text/javascript">
+ 	document.querySelector("html").classList.add('js');
+
+
+function statusFile(){
+	var file = document.getElementById("my-file");
+	var formele = document.getElementById("formid");
+
+	if(file.files.length == 0 ){
+                alert("No files selected");
+            } else {
+                formele.style.visibility = "hidden";
+                table.style.visibility = "visible";
+                 mybar.style.visibility = "visible";
+                 convert_btn.style.visibility = "visible";
+                 comp.style.visibility = "visible";
+                  
+
+
+            }
+}
+
+
+var fileInput  = document.querySelector( ".input-file" ),  
+    button     = document.querySelector( ".input-file-trigger" ),
+    the_return = document.querySelector(".file-return");
+      
+button.addEventListener( "keydown", function( event ) {  
+    if ( event.keyCode == 13 || event.keyCode == 32 ) {  
+        fileInput.focus();  
+    }  
+});
+button.addEventListener( "click", function( event ) {
+   fileInput.focus();
+   return false;
+});  
+fileInput.addEventListener( "change", function( event ) {  
+    the_return.innerHTML = this.value;  
+    statusFile();
+   
+});
+</script>
+
+
+<script type="text/javascript">
+
+	var input = document.getElementById( 'my-file' );
+	var infoArea = document.getElementById( 'file-upload-filename' );
+
+	input.addEventListener( 'change', showFileName );
+
+	function showFileName( event ) {
+	  var input = event.srcElement;
+	var fileName = input.files[0].name;
+	infoArea.textContent =fileName;
+}
+
+</script>
+
+
+<script type="text/javascript">
+	function myFunction(selTag) {
+  var x = selTag.options[selTag.selectedIndex].text;
+  document.getElementById("to").innerHTML = x;
+}
+
+function check_ext(){
+    var ele1 = document.getElementById("slct");
+    var ele2 = document.getElementById("slct2");
+    var btn = document.getElementById("my-file");
+    // alert(ele1.value);
+    if(ele1.value == "default" || ele2.value == "default"){
+        btn.disabled = true;
+        //alert("Select an extension to convert !!")
+    }
+    else{
+
+        btn.disabled = false;
+        if(ele1.value == "png"){
+             btn.accept = "image/x-png";
+        }
+        else if(ele1.value == "jpg"){
+            btn.accept = "image/jpeg";
+        }
+        else if(ele1.value == "psd"){
+            btn.accept = ".psd";
+        }
+        else{
+            var new_ext = "image/" + ele1.value;
+            btn.accept = new_ext;
+        }
+    }
+    }
+
+</script>
+
+
+<script>
+ $("#convert_btn").click(function(){
+  var current_progress = 0;
+  var interval = setInterval(function() {
+      current_progress += 10;
+      $("#dynamic")
+      .css("width", current_progress + "%")
+      .attr("aria-valuenow", current_progress)
+      .text(current_progress + "% Complete");
+
+      if (current_progress >= 100)
+          clearInterval(interval);
+  }, 1);
+});
+
+
+
+</script>
+<!-- 
+<script type="text/javascript">
+	$(function () {
+        $("#convert_btn").on('click', function () {
+         setTimeout(function(){
+            $("#comp").show();}, 1000);
+
+            $("#convert_btn").hide();
+        });
+    });
+
+</script>
+ -->
+
+<script type="text/javascript">
+ $(document).ready(function() {
+  $("#convert_btn").click(function() {
+    setTimeout(function(){
+            $("#comp").toggle();}, 100);
+  });
+});
+</script>
+
+<br><br><br><br><br><br>
+    <footer class="bg-dark text-center text-white">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2021 Copyright:
+    <a class="text-white" href="https://github.com/jaiganesh21">Jaiganesh_Github</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+</html>
